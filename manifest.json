@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Discord Web Auto Quest Extension",
+  "version": "1.2.6",
+  "description": "Automatically complete Discord quests in the browser without any manual work",
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "action": {
+    "default_title": "Discord Web Auto Quest",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon.png",
+      "48": "assets/icon.png",
+      "128": "assets/icon.png"
+    }
+  },
+  "permissions": [
+    "declarativeNetRequestWithHostAccess",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.discord.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://discord.com/*", "https://canary.discord.com/*", "https://ptb.discord.com/*"],
+      "js": ["src/shared/quest-shared.js", "src/content/quest-ui.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://discord.com/*", "https://canary.discord.com/*", "https://ptb.discord.com/*"],
+      "js": ["src/content/user-agent-override.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules/headers.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/sfx/ting.mp3"],
+      "matches": ["https://discord.com/*", "https://canary.discord.com/*", "https://ptb.discord.com/*"]
+    }
+  ]
+}

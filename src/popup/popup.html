@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Web Auto Quest</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <img src="../../assets/icon.png" alt="Extension icon" class="logo">
+        <div>
+          <h1 class="title">Auto Quest</h1>
+          <span id="versionBadge" class="version">v--</span>
+        </div>
+      </div>
+      <span id="statePill" class="pill pill-idle">Idle</span>
+    </header>
+
+    <p id="statusMessage" class="status">Checking active tab...</p>
+
+    <div class="actions">
+      <button id="primaryBtn" type="button" class="btn btn-primary">Run Quests</button>
+      <button id="secondaryBtn" type="button" class="btn btn-secondary" hidden>Open Quest Home</button>
+    </div>
+
+    <div id="confirmBox" class="confirm-box" hidden>
+      <p class="confirm-text">Quests are already running! Do you want to stop execution?</p>
+      <div class="confirm-actions">
+        <button id="cancelStopBtn" type="button" class="btn btn-secondary btn-sm">Keep Running</button>
+        <button id="confirmStopBtn" type="button" class="btn btn-danger btn-sm">Stop Quests</button>
+      </div>
+    </div>
+
+    <div id="questList" class="quest-list" aria-live="polite"></div>
+
+    <footer class="footer">
+      <span>By <a href="https://github.com/wanngxuanji/Discord-Auto-Quest" target="_blank" rel="noopener noreferrer">wanng</a></span>
+      <span>discord.com / canary / ptb</span>
+    </footer>
+  </div>
+  <script src="../shared/quest-shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

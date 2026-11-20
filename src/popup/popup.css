@@ -1,0 +1,290 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 340px;
+  background: #111214;
+  color: #f2f3f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.app {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.version {
+  font-size: 11px;
+  color: #949ba4;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #2b2d31;
+  color: #b5bac1;
+}
+
+.pill-running {
+  background: rgba(88, 101, 242, 0.22);
+  color: #9aa4ff;
+}
+
+.pill-success {
+  background: rgba(67, 181, 129, 0.2);
+  color: #57f287;
+}
+
+.pill-error {
+  background: rgba(218, 55, 60, 0.2);
+  color: #f27a7e;
+}
+
+.status {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #b5bac1;
+}
+
+.status.is-error {
+  color: #f27a7e;
+}
+
+.status.is-success {
+  color: #57f287;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  flex: 1;
+  appearance: none;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #5865f2;
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #4752c4;
+}
+
+.btn-primary.is-running {
+  background: #2b2d31;
+  color: #ffffff;
+  border: 1px solid #3f4147;
+}
+
+.btn-primary.is-running:hover:not(:disabled) {
+  background: #35373c;
+}
+
+.btn-danger {
+  background: #da373c;
+  color: #ffffff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #b82c31;
+}
+
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.confirm-box {
+  background: rgba(240, 178, 50, 0.12);
+  border: 1px solid rgba(240, 178, 50, 0.45);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confirm-box[hidden] {
+  display: none;
+}
+
+.confirm-text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #f9d976;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-secondary {
+  background: #2b2d31;
+  color: #f2f3f5;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #35373c;
+}
+
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3f4147 transparent;
+}
+
+.quest-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.quest-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.quest-list::-webkit-scrollbar-thumb {
+  background: #3f4147;
+  border-radius: 999px;
+}
+
+.quest-list::-webkit-scrollbar-thumb:hover {
+  background: #52555d;
+}
+
+.quest-list:empty {
+  display: none;
+}
+
+.quest-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #1e1f22;
+}
+
+.quest-item.is-done {
+  opacity: 0.68;
+}
+
+.quest-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.quest-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.quest-progress {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: #b5bac1;
+  flex-shrink: 0;
+}
+
+.quest-item.is-done .quest-progress {
+  color: #57f287;
+  font-weight: 600;
+}
+
+.bar-track {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: #2b2d31;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: #5865f2;
+  transition: width 0.25s ease;
+}
+
+.quest-item.is-done .bar-fill {
+  background: #43b581;
+}
+
+.footer {
+  border-top: 1px solid #2b2d31;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #949ba4;
+}
+
+.footer a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
