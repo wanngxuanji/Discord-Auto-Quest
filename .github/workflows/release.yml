@@ -1,0 +1,30 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Package extension zip
+        run: |
+          ZIP_NAME="Discord-Auto-Quest-${GITHUB_REF_NAME}.zip"
+          zip -r "${ZIP_NAME}" manifest.json assets rules src
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ZIP_NAME="Discord-Auto-Quest-${GITHUB_REF_NAME}.zip"
+          gh release create "${GITHUB_REF_NAME}" "${ZIP_NAME}" \
+            --title "Discord Auto Quest ${GITHUB_REF_NAME}" \
+            --generate-notes
